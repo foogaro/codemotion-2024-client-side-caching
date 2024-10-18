@@ -1,0 +1,11 @@
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Peroni","abv":4.6,"ibu":35}' http://localhost:8080/api/beers
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Moretti","abv":4.6,"ibu":35}' http://localhost:8080/api/beers
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Ichnusa","abv":4.6,"ibu":35}' http://localhost:8080/api/beers
+curl -X POST -H "Content-Type: application/json" -d '{"name":"Messina","abv":4.6,"ibu":35}' http://localhost:8080/api/beers
+
+curl -X GET "http://localhost:8080/api/beers/Peroni"
+curl -X GET "http://localhost:8080/api/beers/Moretti"
+curl -X GET "http://localhost:8080/api/beers/Ichnusa"
+curl -X GET "http://localhost:8080/api/beers/Messina"
+
+curl -X PUT -H "Content-Type: application/json" -d '{"name":"Messina","abv":4.6,"ibu":95}' http://localhost:8080/api/beers/Messina

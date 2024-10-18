@@ -1,0 +1,43 @@
+services:
+  redis:
+    image: redis/redis-stack:7.4.0-v1
+    container_name: redis
+    hostname: redis
+    restart: unless-stopped
+    cap_add:
+      - SYS_RESOURCE
+    expose:
+      - 6379
+    ports:
+      - "6379:6379"
+    stdin_open: true
+    tty: true
+    networks:
+      demo:
+        ipv4_address: 172.32.0.2
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: foogaro/client-side-caching-app:1.0.0
+    image: foogaro/client-side-caching-app:1.0.0
+    container_name: app
+    hostname: app
+    restart: unless-stopped
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    networks:
+      demo:
+        ipv4_address: 172.32.0.3
+networks:
+  demo:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.32.0.0/16
+          gateway: 172.32.0.1

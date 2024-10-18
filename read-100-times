@@ -1,0 +1,6 @@
+for i in {1..100}
+do
+    echo "Execution $i"
+    curl -X GET http://localhost:8080/api/beers/Messina
+    sleep 1
+done
